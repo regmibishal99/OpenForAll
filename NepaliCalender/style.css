@@ -1,0 +1,116 @@
+:root {
+  --paper: #f3f6fb;
+  --surface: #ffffff;
+  --ink: #12203d;
+  --muted: #5c6884;
+  --line: #d9e0ee;
+  --blue: #003893;
+  --crimson: #c8102e;
+
+  --c1: #9fc5e8;
+  --c2: #f2c38d;
+  --c3: #b5d6a7;
+  --c4: #d5b3e0;
+  --c5: #f0a9a0;
+  --c6: #a6d8d0;
+  --c7: #f0dc8a;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Mukta", system-ui, sans-serif;
+  line-height: 1.5;
+}
+a { color: var(--blue); }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Header */
+.site-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px clamp(16px, 4vw, 48px);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 10;
+}
+.brand { font-family: "Yatra One", "Mukta", sans-serif; font-size: 1.5rem; color: var(--blue); text-decoration: none; }
+.brand span { font-family: "Mukta", sans-serif; font-size: 1rem; color: var(--muted); margin-left: 6px; }
+.site-header nav a { margin-left: 20px; text-decoration: none; font-weight: 600; color: var(--ink); }
+.site-header nav a:hover { color: var(--crimson); }
+
+/* Hero */
+.hero { text-align: center; padding: clamp(32px, 7vw, 72px) 16px 8px; }
+.hero h1 {
+  font-family: "Yatra One", "Mukta", sans-serif; font-weight: 400;
+  font-size: clamp(2.2rem, 7vw, 4rem); line-height: 1.1; margin: 0 0 12px; color: var(--blue);
+}
+.hero p { margin: 0 auto; max-width: 46ch; color: var(--muted); font-size: 1.1rem; }
+
+/* Map */
+.map-section { max-width: 1100px; margin: 0 auto; padding: 16px clamp(8px, 3vw, 32px) 40px; }
+.map-wrap { position: relative; }
+#nepal-map { width: 100%; height: auto; display: block; }
+
+.province {
+  stroke: #fff; stroke-width: 1.5; stroke-linejoin: round;
+  cursor: pointer; outline: none;
+  transition: filter .15s;
+}
+.p1 { fill: var(--c1); } .p2 { fill: var(--c2); } .p3 { fill: var(--c3); } .p4 { fill: var(--c4); }
+.p5 { fill: var(--c5); } .p6 { fill: var(--c6); } .p7 { fill: var(--c7); }
+.province:hover, .province:focus-visible { filter: brightness(0.93) saturate(1.15); }
+
+.outline { fill: none; pointer-events: none; stroke-linejoin: round; visibility: hidden; }
+.outline.hover { stroke: var(--blue); stroke-width: 2.5; }
+.outline.selected { stroke: var(--crimson); stroke-width: 4; }
+.outline.show { visibility: visible; }
+
+.badge { pointer-events: none; }
+.badge circle { fill: var(--ink); opacity: .85; }
+.badge-num { fill: #fff; font: 700 19px "Mukta", sans-serif; text-anchor: middle; dominant-baseline: central; }
+
+.tooltip {
+  position: absolute; pointer-events: none; z-index: 5;
+  background: var(--ink); color: #fff; font-weight: 600;
+  padding: 4px 10px; border-radius: 6px; font-size: .95rem;
+  transform: translate(-50%, -140%); white-space: nowrap;
+}
+
+/* Legend */
+.legend { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.legend button {
+  width: 100%; display: flex; align-items: center; gap: 10px;
+  font: inherit; font-weight: 600; color: var(--ink); text-align: left;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px 12px; cursor: pointer;
+}
+.legend button:hover, .legend button.active { border-color: var(--crimson); }
+.legend button.active { box-shadow: inset 4px 0 0 var(--crimson); }
+.swatch { width: 14px; height: 14px; border-radius: 50%; flex: none; }
+.legend small { display: block; color: var(--muted); font-weight: 400; line-height: 1.1; }
+
+/* Details (next section) */
+.province-details { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); scroll-margin-top: 64px; }
+.details-inner { max-width: 900px; margin: 0 auto; padding: clamp(28px, 6vw, 64px) clamp(16px, 4vw, 32px); }
+.details-kicker { margin: 0; color: var(--crimson); font-weight: 700; }
+.details-inner h2 { font-family: "Yatra One", "Mukta", sans-serif; font-weight: 400; font-size: clamp(2rem, 6vw, 3rem); margin: 4px 0 0; color: var(--blue); }
+.details-np { margin: 0 0 20px; font-size: 1.4rem; color: var(--muted); }
+.facts { margin: 0 0 24px; }
+.facts div { display: flex; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); }
+.facts dt { width: 110px; color: var(--muted); }
+.facts dd { margin: 0; font-weight: 600; }
+.placeholder { padding: 28px; border: 2px dashed var(--line); border-radius: 10px; color: var(--muted); text-align: center; }
+
+.site-footer { text-align: center; padding: 24px 16px 36px; color: var(--muted); font-size: .9rem; }
+
+@media (max-width: 520px) {
+  .brand span { display: none; }
+  .badge-num { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .province { transition: none; }
+}
